@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
+      background-color: black;
+      color: white;
+    }
+    .downloadButton{
+        margin-top: 100px;
+        margin-left: 150px;
+      height: 50px;
+      width: 300px;
+      background-color: yellow;
+      color: black;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      font-size: 22px;
+       
+    }
+   span{
+    display: flex;
+   }
+    #p1{
+       
+      margin: 30px;
+
+    }
+    img{
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="countdownContainer"><span>
+  To Download Please Wait &nbsp;<div id="countdown"> 30 </div> &nbsp;Seconds</span>
+</div>
+
+<script>
+  function updateCountdown() {
+    var countdownElement = document.getElementById('countdown');
+    var countdownContainer = document.getElementById('countdownContainer');
+    var currentCount = parseInt(countdownElement.innerText, 10);
+
+    if (currentCount > 1) {
+      countdownElement.innerText = (currentCount - 1).toString();
+    } else {
+      // Remove countdown text and show the Download button
+      countdownContainer.innerHTML = '<button class="downloadButton" onclick="downloadFile()">Download</button> <br><br> <p id="p1">Please Wait some Time After Clicking</p>';
+    }
+  }
+
+  setInterval(updateCountdown, 100);
+
+  
+  function downloadFile() {
+    
+    // Simulating a file download
+    var link = document.createElement('a');
+    link.href = 'errm.png';  // Replace with the actual path to your file
+    link.download = 'errm.png';  // Replace with the desired filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    alert('Downloading file...'); // You can remove this alert if you want
+  }
+     
+  
+</script>
+
+</body>
+</html>
